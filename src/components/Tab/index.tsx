@@ -4,9 +4,12 @@ import clsx from "clsx";
 type TabsProps = {
   items: Array<TabItem>;
   position?: TabPosition;
+  orientation?: TabOrientation;
 };
 
 type TabPosition = "start" | "end";
+
+type TabOrientation = "horizontal" | "vertical";
 
 type TabItem = {
   key: string;
@@ -14,19 +17,35 @@ type TabItem = {
   content: React.ReactNode;
 };
 
-const positionStyle = {
-  start: "flex-col",
-  end: "flex-col-reverse space-y-reverse",
-};
-
-export default function Tabs({ items, position = "start" }: TabsProps) {
+export default function Tabs({
+  items,
+  orientation = "horizontal",
+  position = "start",
+}: TabsProps) {
   const [selected, setSelected] = useState<string>(items[0].key);
 
+  let rootStyle = "";
+  let tabListStyle = "";
+
+  if (orientation === "horizontal") {
+    tabListStyle = "space-x-1 flex-row";
+
+    if (position === "start") rootStyle = "flex-col space-y-2";
+    else if (position === "end")
+      rootStyle = "flex-col-reverse space-y-2 space-y-reverse";
+  } else if (orientation === "vertical") {
+    tabListStyle = "space-y-1 flex-col";
+
+    if (position === "start") rootStyle = "flex-row space-x-2";
+    else if (position === "end")
+      rootStyle = "flex-row-reverse space-x-2 space-x-reverse";
+  }
+
   return (
-    <div className={clsx("flex space-y-2 ", positionStyle[position])}>
+    <div className={clsx("flex", rootStyle)}>
       <div
         role="tablist"
-        className="flex space-x-1 rounded-xl bg-blue-900/20 p-1"
+        className={clsx("flex rounded-xl bg-blue-900/20 p-1", tabListStyle)}
       >
         {items.map((item) => {
           const isSelected = item.key === selected;
@@ -36,7 +55,7 @@ export default function Tabs({ items, position = "start" }: TabsProps) {
           return (
             <button
               className={clsx(
-                "w-full rounded-lg py-2.5 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
+                "w-full rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
                 isSelected
                   ? "text-purple-700 bg-white shadow"
                   : "text-purple-100 hover:bg-white/[0.12] hover:text-white"

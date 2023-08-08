@@ -5,7 +5,8 @@ function App() {
     <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen">
       <div className="container mx-auto px-10 max-w-md pt-20">
         <Tabs
-          position="end"
+          position="start"
+          orientation="horizontal"
           items={[
             {
               key: "kambing",
