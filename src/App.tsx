@@ -9,20 +9,70 @@ function App() {
             {
               key: "kambing",
               title: "Kambing",
-              content:
-                "Kambing ternak (Capra aegagrus hircus) merupakan salah satu subspesies yang dipelihara atau dijinakkan dari kambing liar Asia Barat Daya dan Eropa Timur.",
+              content: (
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <h2 className="text-base font-bold">Pengertian</h2>
+                    <p className="text-sm">
+                      <b>Kambing</b> ternak (<i>Capra aegagrus hircus</i>)
+                      merupakan salah satu subspesies yang dipelihara atau
+                      dijinakkan dari kambing liar Asia Barat Daya dan Eropa
+                      Timur."
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <h2 className="text-base font-bold">Taksonomi</h2>
+                    <ul className="text-sm list-disc list-inside">
+                      <li>
+                        Famili <i>Manidae</i>
+                      </li>
+                      <li>
+                        Famili <i>†Metacheiromyidae</i>
+                      </li>
+                      <li>
+                        Famili <i>†Epoicotheriidae</i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ),
             },
             {
               key: "ayam",
               title: "Ayam",
-              content:
-                "Ayam (Gallus gallus domesticus) adalah binatang unggas yang biasa dipelihara untuk dimanfaatkan daging, telur, dan bulunya. Ayam peliharaan merupakan keturunan langsung dari salah satu subspesies ayam hutan yang dikenal sebagai ayam hutan merah (Gallus gallus) atau ayam bangkiwa (bankiva fowl)",
+              content: (
+                <div className="space-y-1">
+                  <h2 className="text-base font-bold">Pengertian</h2>
+                  <p className="text-sm">
+                    <b>Ayam</b> (<i>Gallus gallus domesticus</i>) adalah
+                    binatang unggas yang biasa dipelihara untuk dimanfaatkan
+                    daging, telur, dan bulunya. Ayam peliharaan merupakan
+                    keturunan langsung dari salah satu subspesies ayam hutan
+                    yang dikenal sebagai ayam hutan merah (<i>Gallus gallus</i>)
+                    atau ayam bangkiwa (<i>bankiva fowl</i>)
+                  </p>
+                </div>
+              ),
             },
             {
               key: "trenggiling",
               title: "Trenggiling",
-              content:
-                "Tenggiling atau trenggiling (juga disebut sebagai pemakan-semut bersisik) adalah mamalia dari ordo Pholidota. Satu keluarga yang masih ada, Manidae, memiliki tiga genera, yaitu Manis yang terdiri dari empat spesies yang hidup di Asia, Phataginus yang terdiri dari dua spesies hidup di Afrika, dan Smutsia yang terdiri dari dua spesies juga tinggal di Afrika.",
+              content: (
+                <div className="space-y-1">
+                  <h2 className="text-base font-bold">Pengertian</h2>
+                  <p className="text-sm">
+                    <b>Tenggiling</b> atau <b>trenggiling</b> (juga disebut
+                    sebagai pemakan-semut bersisik) adalah mamalia dari ordo
+                    <i>Pholidota</i>. Satu keluarga yang masih ada,{" "}
+                    <i>Manidae</i>, memiliki tiga genera, yaitu <i>Manis</i>{" "}
+                    yang terdiri dari empat spesies yang hidup di Asia,{" "}
+                    <i>Phataginus</i> yang terdiri dari dua spesies hidup di
+                    Afrika, dan <i>Smutsia</i> yang terdiri dari dua spesies juga
+                    tinggal di Afrika
+                  </p>
+                </div>
+              ),
             },
           ]}
         />

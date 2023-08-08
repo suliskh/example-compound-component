@@ -8,7 +8,7 @@ type TabsProps = {
 type TabItem = {
   key: string;
   title: string;
-  content: string;
+  content: React.ReactNode;
 };
 
 export default function Tabs({ items }: TabsProps) {
@@ -55,7 +55,7 @@ export default function Tabs({ items }: TabsProps) {
             role="tabpanel"
             tabIndex={item.key === selected ? 0 : -1}
           >
-            {item.key === selected && <p>{item.content}</p>}
+            {item.key === selected && item.content}
           </div>
         ))}
       </div>
