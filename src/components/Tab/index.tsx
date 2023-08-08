@@ -14,6 +14,7 @@ type TabOrientation = "horizontal" | "vertical";
 type TabItem = {
   key: string;
   title: string;
+  icon?: React.ReactNode;
   content: React.ReactNode;
 };
 
@@ -50,12 +51,10 @@ export default function Tabs({
         {items.map((item) => {
           const isSelected = item.key === selected;
 
-          console.log({ isSelected, key: item.key });
-
           return (
             <button
               className={clsx(
-                "w-full rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
+                "w-full flex space-x-2 items-center justify-center rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
                 isSelected
                   ? "text-purple-700 bg-white shadow"
                   : "text-purple-100 hover:bg-white/[0.12] hover:text-white"
@@ -69,7 +68,7 @@ export default function Tabs({
               type="button"
               onClick={() => setSelected(item.key)}
             >
-              {item.title}
+              {item.icon} <span>{item.title}</span>
             </button>
           );
         })}
