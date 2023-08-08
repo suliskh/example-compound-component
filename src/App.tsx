@@ -5,6 +5,7 @@ function App() {
     <div className="bg-gradient-to-r from-violet-500 to-fuchsia-500 min-h-screen">
       <div className="container mx-auto px-10 max-w-md pt-20">
         <Tabs
+          position="end"
           items={[
             {
               key: "kambing",
@@ -68,8 +69,8 @@ function App() {
                     <i>Manidae</i>, memiliki tiga genera, yaitu <i>Manis</i>{" "}
                     yang terdiri dari empat spesies yang hidup di Asia,{" "}
                     <i>Phataginus</i> yang terdiri dari dua spesies hidup di
-                    Afrika, dan <i>Smutsia</i> yang terdiri dari dua spesies juga
-                    tinggal di Afrika
+                    Afrika, dan <i>Smutsia</i> yang terdiri dari dua spesies
+                    juga tinggal di Afrika
                   </p>
                 </div>
               ),

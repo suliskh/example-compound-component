@@ -3,7 +3,10 @@ import clsx from "clsx";
 
 type TabsProps = {
   items: Array<TabItem>;
+  position?: TabPosition;
 };
+
+type TabPosition = "start" | "end";
 
 type TabItem = {
   key: string;
@@ -11,11 +14,16 @@ type TabItem = {
   content: React.ReactNode;
 };
 
-export default function Tabs({ items }: TabsProps) {
+const positionStyle = {
+  start: "flex-col",
+  end: "flex-col-reverse space-y-reverse",
+};
+
+export default function Tabs({ items, position = "start" }: TabsProps) {
   const [selected, setSelected] = useState<string>(items[0].key);
 
   return (
-    <div className="space-y-2">
+    <div className={clsx("flex space-y-2 ", positionStyle[position])}>
       <div
         role="tablist"
         className="flex space-x-1 rounded-xl bg-blue-900/20 p-1"
