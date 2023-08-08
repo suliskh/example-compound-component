@@ -16,6 +16,7 @@ type TabItem = {
   title: string;
   icon?: React.ReactNode;
   content: React.ReactNode;
+  disabled?: boolean;
 };
 
 export default function Tabs({
@@ -50,17 +51,26 @@ export default function Tabs({
       >
         {items.map((item) => {
           const isSelected = item.key === selected;
+          const isDisabled = !!item.disabled
+
+          let tabStyle = ""
+
+          if (isSelected) {
+            if (!isDisabled ) tabStyle = "text-purple-700 bg-white shadow"
+          } else {
+            tabStyle = isDisabled ? "text-purple-300 cursor-not-allowed" : "text-purple-100 hover:bg-white/[0.12] hover:text-white"
+          }
 
           return (
             <button
+              aria-controls={`panel__${item.key}`}
+              aria-disabled={isDisabled}
+              aria-selected={isSelected ? "true" : "false"}
               className={clsx(
                 "w-full flex space-x-2 items-center justify-center rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
-                isSelected
-                  ? "text-purple-700 bg-white shadow"
-                  : "text-purple-100 hover:bg-white/[0.12] hover:text-white"
+                tabStyle
               )}
-              aria-controls={`panel__${item.key}`}
-              aria-selected={isSelected ? "true" : "false"}
+              disabled={isDisabled}
               id={`tab__${item.key}`}
               key={item.key}
               role="tab"

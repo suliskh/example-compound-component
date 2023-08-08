@@ -59,6 +59,7 @@ function App() {
             {
               key: "ayam",
               title: "Ayam",
+              disabled: true,
               content: (
                 <div className="space-y-1">
                   <h2 className="text-base font-bold">Pengertian</h2>
