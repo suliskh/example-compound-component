@@ -4,7 +4,7 @@ import NormalTabs from "./components/Tab";
 
 function App() {
   return (
-    <div className="bg-gradient-to-r from-yellow-200 to-amber-900 min-h-screen">
+    <div className="bg-gradient-to-r from-amber-500 to-amber-900 min-h-screen">
       <div className="container mx-auto px-10 max-w-md pt-20">
         <h1 className="mb-4 text-white font-bold uppercase text-lg">
           Normal Component
