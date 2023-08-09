@@ -19,7 +19,7 @@ export function TabList({ children, className }: TabListProps) {
     <div
       role="tablist"
       className={clsx(
-        "flex rounded-xl bg-blue-900/20 p-1",
+        "flex rounded-xl bg-amber-900/20 p-1",
         orientationStyles[orientation],
         className
       )}

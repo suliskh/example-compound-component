@@ -17,11 +17,11 @@ export function Tab({ children, disabled, name }: TabProps) {
 
   let style = "";
   if (isSelected) {
-    if (!disabled) style = "text-purple-700 bg-white shadow";
+    if (!disabled) style = "text-amber-700 bg-white shadow";
   } else {
     style = disabled
-      ? "text-purple-300 cursor-not-allowed"
-      : "text-purple-100 hover:bg-white/[0.12] hover:text-white";
+      ? "text-amber-100 opacity-50 cursor-not-allowed"
+      : "text-amber-100 hover:bg-white/[0.12] hover:text-white";
   }
 
   const handleSelectAndFocus = (tabIndex: number) => {
@@ -65,7 +65,7 @@ export function Tab({ children, disabled, name }: TabProps) {
       aria-disabled={!!disabled}
       aria-selected={isSelected ? "true" : "false"}
       className={clsx(
-        "w-full flex space-x-2 items-center justify-center rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-purple-400 focus:outline-none focus:ring-2",
+        "w-full flex space-x-2 items-center justify-center rounded-lg py-2.5 px-3 text-sm font-medium leading-5 ring-white ring-opacity-60 ring-offset-2 ring-offset-amber-400 focus:outline-none focus:ring-2",
         style
       )}
       disabled={!!disabled}
