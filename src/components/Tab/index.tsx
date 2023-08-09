@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import clsx from "clsx";
+import { makeTabId } from "../CompoundTab/utils";
 
 type TabsProps = {
   items: Array<TabItem>;
@@ -25,6 +26,7 @@ export default function Tabs({
   position = "start",
 }: TabsProps) {
   const [selected, setSelected] = useState<string>(items[0].key);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   let rootStyle = "";
   let tabListStyle = "";
@@ -43,22 +45,62 @@ export default function Tabs({
       rootStyle = "flex-row-reverse space-x-2 space-x-reverse";
   }
 
+  const selectAndFocus = (key: string) => {
+    setSelected(key);
+
+    rootRef.current
+      ?.querySelector<HTMLButtonElement>(`#${makeTabId(key)}`)
+      ?.focus();
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    key: string
+  ) => {
+    const keyCode = e.code;
+
+    const activeItems = items.filter((item) => !item.disabled);
+    const selectedIndex = activeItems.findIndex((item) => item.key === key);
+
+    if (
+      (orientation === "horizontal" && keyCode === "ArrowRight") ||
+      (orientation === "vertical" && keyCode === "ArrowDown")
+    ) {
+      const nextSelectedIndex = selectedIndex + 1;
+
+      if (nextSelectedIndex >= 0 && nextSelectedIndex < activeItems.length) {
+        selectAndFocus(activeItems[nextSelectedIndex].key);
+      }
+    } else if (
+      (orientation === "horizontal" && keyCode === "ArrowLeft") ||
+      (orientation === "vertical" && keyCode === "ArrowUp")
+    ) {
+      const nextSelectedIndex = selectedIndex - 1;
+
+      if (nextSelectedIndex >= 0 && nextSelectedIndex < activeItems.length) {
+        selectAndFocus(activeItems[nextSelectedIndex].key);
+      }
+    }
+  };
+
   return (
-    <div className={clsx("flex", rootStyle)}>
+    <div className={clsx("flex", rootStyle)} ref={rootRef}>
       <div
         role="tablist"
         className={clsx("flex rounded-xl bg-blue-900/20 p-1", tabListStyle)}
       >
         {items.map((item) => {
           const isSelected = item.key === selected;
-          const isDisabled = !!item.disabled
+          const isDisabled = !!item.disabled;
 
-          let tabStyle = ""
+          let tabStyle = "";
 
           if (isSelected) {
-            if (!isDisabled ) tabStyle = "text-purple-700 bg-white shadow"
+            if (!isDisabled) tabStyle = "text-purple-700 bg-white shadow";
           } else {
-            tabStyle = isDisabled ? "text-purple-300 cursor-not-allowed" : "text-purple-100 hover:bg-white/[0.12] hover:text-white"
+            tabStyle = isDisabled
+              ? "text-purple-300 cursor-not-allowed"
+              : "text-purple-100 hover:bg-white/[0.12] hover:text-white";
           }
 
           return (
@@ -77,6 +119,10 @@ export default function Tabs({
               tabIndex={isSelected ? 0 : -1}
               type="button"
               onClick={() => setSelected(item.key)}
+              onKeyDown={(e: React.KeyboardEvent<HTMLButtonElement>) =>
+                handleKeyDown(e, item.key)
+              }
+              onFocus={() => console.log("FOCUSED!")}
             >
               {item.icon} <span>{item.title}</span>
             </button>
